@@ -1868,7 +1868,6 @@ spec:
                 secretKeyRef:
                   name: "traefik-enterprise-license"
                   key: license
-                      env:
             - name: CF_API_EMAIL
               valueFrom:
                 secretKeyRef:
