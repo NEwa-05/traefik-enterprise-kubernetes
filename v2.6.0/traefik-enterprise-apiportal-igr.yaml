@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-enterprise-api
+  namespace: traefikee
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`apiportal.example.com`)
+      kind: Rule
+      services:
+        - name: apiportal@internal
+          kind: TraefikService
+  tls:
+    certResolver: cloudflare

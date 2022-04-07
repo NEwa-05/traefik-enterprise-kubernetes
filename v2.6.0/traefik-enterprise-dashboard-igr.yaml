@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-enterprise-dashboard
+  namespace: traefikee
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`dashboard.example.com`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+      middlewares:
+        - name: traefik-enterprise-dashboard-basicauth
+  tls:
+    certResolver: cloudflare
